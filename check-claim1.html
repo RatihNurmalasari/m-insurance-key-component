@@ -81,21 +81,76 @@
                 <li>The validation process is to check acceptance criteria for claim number and taxonomy.</li>
                 <li>Calling check claim api to match the claim number and taxonomy to the server.</li>
             </ol>
-            
-            <p class="subtext">Following are the sample use case of check claim:</p>
-            
-            <div class="multiple-items">
-                <div> <img src="images/check-claim-use-case-1.png" alt="" class="centered"/></div>
-                <div> <img src="images/check-claim-use-case-2.png" alt="" class="centered"/></div>
-                <div> <img src="images/check-claim-use-case-3.png" alt="" class="centered"/></div>
-                <div> <img src="images/check-claim-use-case-4.png" alt="" class="centered"/></div>
-                <div> <img src="images/check-claim-use-case-5.png" alt="" class="centered"/></div>
-                <div> <img src="images/check-claim-use-case-6.png" alt="" class="centered"/></div>
-                <div> <img src="images/check-claim-use-case-7.png" alt="" class="centered"/></div>
-                <div> <img src="images/check-claim-use-case-8.png" alt="" class="centered"/></div>
-            </div>
-            
-            
+
+            <div class="seperator"></div>
+            <h1>How to?</h1>
+            <p class="subtext"></p>
+
+            <p class="subtext">In this section, we are going to go through necessary steps of check claim process. </p>
+
+            <p class="subtext">The flow starts with user inputting claim number and selecting available taxonomy in the fields provided, when user taps on SUBMIT button the application will validating it.</p>
+
+            <div> <img src="images/check-claim-inputted.png" alt="" class="centered"/></div>
+            <p class="image-caption">Check Claim Page with claim number and taxonomy has been inputted</p>
+            <br>
+
+            <p class="subtext">Below is the components of check claim page: </p>
+
+            <br>
+
+            <div> <img src="images/check-claim-components.png" alt="" class="centered"/></div>
+            <p class="image-caption">Check Claim Page Components</p>
+            <ol class="decimal">
+                <li><b>Claim Number Field</b>: User input claim number here, default input type is text.</li>
+                <li><b>Taxonomy Drop Down</b>: User select taxonomy here</li>
+                <li><b>Submit Button</b>: The submit button will validate the claim number and taxonomy which has been inputted by user before. If the validation is passed, next the check claim api function will be called.</li>
+            </ol>
+
+            <br>
+
+            <p class="subtext">Below is the validation scenarios for check claim process: </p>
+
+            <h2>1.1 User Leaves Fields Empty</h2>
+            <p class="subtext">The user will be able to see inline error messages if user taps on SUBMIT button without entering any values on the fields.</p>
+
+            <div> <img src="images/check-claim-error-mandatory.png" alt="" class="centered"/></div>
+            <p class="image-caption">Inline Error User Leaves Both of Fields Empty Scenario</p>
+            <div> <img src="images/check-claim-error-taxonomy.png" alt="" class="centered"/></div>
+            <p class="image-caption">Inline Error User Leaves Taxonomy Drop Down Empty Scenario</p>
+
+            <p class="subtext">The inline error text are <span class="error-text">"Please fill the mandatory fields." </span> and <span class="error-text">"Please select the taxonomy code." </span> incorrect text fields or drop down will be highlighted with red color. </p>
+
+            <br>
+
+            <h2>1.2 Incorrect Claim Number Format</h2>
+            <p class="subtext">The user will be able to see inline error messages if user taps on SUBMIT button with invalid claim number format.</p>
+            <div> <img src="images/check-claim-error-claimnumber.png" alt="" class="centered"/></div>
+            <p class="image-caption">Inline Error Incorrect Claim Number Format</p>
+
+            <p class="subtext">The inline error text are <span class="error-text">"Please fill in the correct claim number." </span> the incorrect text field will be highlighted with red color. The field should be inputted by number only. </p>
+
+            <br>
+
+            <h2>1.3 The Combination of Claim Number and Taxonomy not found</h2>
+            <p class="subtext">The user will be able to see inline error messages if user taps on SUBMIT button with invalid combination of claim number and taxonomy.</p>
+            <div> <img src="images/check-claim-not-match.png" alt="" class="centered"/></div>
+            <p class="image-caption">Inline Error Incorrect Combination of Claim Number and Taxonomy</p>
+
+            <p class="subtext">After validation process, the application will calling check claim api to find claim number and taxonomy to the server. If combination of claim number and taxonomy did not found, user will be able to see inline error <span class="error-text">"Sorry, the information you provided does not match our records. Please contact your Owner Services Team."</span>.</p>
+
+            <br>
+
+            <h2>1.4 The Combination of Claim Number and Taxonomy Was Found</h2>
+            <div> <img src="images/check-claim-success.png" alt="" class="centered"/></div>
+            <p class="image-caption">Combination of Claim Number and Taxonomy Was Found</p>
+
+            <div> <img src="images/claim-detail-page.png" alt="" class="centered"/></div>
+            <p class="image-caption">Claim Detail Page</p>
+
+            <p class="subtext">After validation process, the application will calling check claim api to match claim number and taxonomy to the server. If claim number and taxonomy found, user will be able to see spinner masking the page, and redirected to claim detail page.</p>
+
+            <br>
+
             <div class="seperator"></div>
             <h1>How to Achieve this Feature/Technical</h1>
             <p class="subtext">To achieve all features available in Check Claim needs API integration to interact between application with database. API responsible handling request by user who have entered their claim number and taxonomy. API return response in JSON format and will be mapped in user interface. Here is an example of mapping data from service into user interface:</p>

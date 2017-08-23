@@ -82,15 +82,74 @@
                 <li>Calling login api to match the email address and password to the server.</li>
             </ol>
 
-            <p class="subtext">Following are the sample use case of check claim:</p>
-            
-            <div class="multiple-items">
-                <div> <img src="images/login-use-case-1.png" alt="" class="centered"/></div>
-                <div> <img src="images/login-use-case-2.png" alt="" class="centered"/></div>
-                <div> <img src="images/login-use-case-3.png" alt="" class="centered"/></div>
-                <div> <img src="images/login-use-case-4.png" alt="" class="centered"/></div>
-            </div>
-            
+            <div class="seperator"></div>
+            <h1>How to?</h1>
+            <p class="subtext"></p>
+
+            <p class="subtext">In this section, we are going to go through necessary steps of login process. </p>
+
+            <p class="subtext">The flow starts with user inputting email address and password in the fields provided, when user taps on SIGN IN button the application will validating it.</p>
+
+            <div> <img src="images/input-email-username.png" alt="" class="centered"/></div>
+            <p class="image-caption">Login Page with email address and password has been inputted</p>
+            <br>
+
+            <p class="subtext">Below is the components of login page: </p>
+
+            <br>
+
+            <div> <img src="images/login-box.png" alt="" class="centered"/></div>
+            <p class="image-caption">Login Page Components</p>
+            <ol class="decimal">
+                <li><b>Email Field</b>: User input email here, default input type is text.</li>
+                <li><b>Password Field</b>: User input password here, default input type is password.</li>
+                <li><b>Password Watch</b>: The password will reveal upon user clicked this password watch.</li>
+                <li><b>Sign In Button</b>: The sign in button will validate the email address and password which has been inputted by user before. If the validation is passed, next the login api function will be called.</li>
+            </ol>
+
+            <br>
+
+            <p class="subtext">Below is the validation scenarios for login process: </p>
+
+            <h2>1.1 User Leaves Fields Empty</h2>
+            <p class="subtext">The user will be able to see inline error messages if user taps on SIGN IN button without entering any values on the fields.</p>
+
+            <div> <img src="images/login-empty-scenario.png" alt="" class="centered"/></div>
+            <p class="image-caption">Inline Error User Leaves Both of Fields Empty Scenario</p>
+            <div> <img src="images/login-empty-email-scenario.png" alt="" class="centered"/></div>
+            <p class="image-caption">Inline Error User Leave Email Fields Empty Scenario</p>
+            <div> <img src="images/login-empty-password-scenario.png" alt="" class="centered"/></div>
+            <p class="image-caption">Inline Error User Leave Password Fields Empty Scenario</p>
+
+            <p class="subtext">The inline error text are <span class="error-text">"Please enter your email address and your password." </span> the incorrect text fields will be highlighted with red color. </p>
+
+            <br>
+
+            <h2>1.2 Incorrect Email Address Format</h2>
+            <p class="subtext">The user will be able to see inline error messages if user taps on SIGN IN button with invalid email format.</p>
+            <div> <img src="images/login-invalid-email-format.png" alt="" class="centered"/></div>
+            <p class="image-caption">Inline Error Incorrect Email Address Format</p>
+
+            <p class="subtext">The inline error text are <span class="error-text">"Please re-enter your email address. Remember, the valid format is “email@domain.com”" </span> the incorrect text field will be highlighted with red color. </p>
+
+            <br>
+
+            <h2>1.3 Incorrect Email or Password</h2>
+            <p class="subtext">The user will be able to see inline error messages if user taps on SIGN IN button with invalid email or password.</p>
+            <div> <img src="images/login-incorrect-email-password.png" alt="" class="centered"/></div>
+            <p class="image-caption">Inline Error Incorrect Email or Password</p>
+
+            <p class="subtext">After validation process, the application will calling login api to match email address and password to the server. If email address and password did not match, user will be able to see inline error <span class="error-text">"Please check your email and password."</span>.</p>
+
+            <br>
+
+            <h2>1.4 Correct Email and Password</h2>
+            <div> <img src="images/login-success.png" alt="" class="centered"/></div>
+            <p class="image-caption">Login Success</p>
+
+            <p class="subtext">After validation process, the application will calling login api to match email address and password to the server. If email address and password match, user will be able to see spinner masking the page, and redirected to check claim page.</p>
+
+            <br>
 
             <div class="seperator"></div>
             <h1>How to Achieve this Feature/Technical</h1>
