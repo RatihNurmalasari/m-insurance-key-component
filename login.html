@@ -71,18 +71,18 @@
         <div class="container">
             <h4>Component</h4>
             <h1>Login</h1>
-            <p>Identify yourself by inputting email address and password to gain access to the system.</p>
+            <p>Identify yourself by inputting email address and password to gain an access to the system.</p>
 
             <div class="seperator"></div>
             <h1>Overview</h1>
-            <p class="subtext">The application collect email address and password that inputted by user, and validating it to the next process that is calling login api:</p>
+            <p class="subtext">When the user clicks Sign In button in header, a login box will appear in the middle of the screen. After a user fills out the email address and password, then clicks on Submit button, the application validates it. If validation succeeds, Login API will be called.</p>
 
-            <ol class="list">
-                <li>The validation process is to check acceptance criteria for email address and password.</li>
-                <li>Calling login api to match the email address and password to the server.</li>
-            </ol>
+            <!-- <ol class="list">
+                <li>The validation process is used to check acceptance criteria on email address and password.</li>
+                <li>Calling Login API to match the email address and password to the server.</li>
+            </ol> -->
 
-            <p class="subtext">Following are the sample use case of check claim:</p>
+            <p class="subtext">Following are the sample use case of login:</p>
             
             <div class="multiple-items">
                 <div> <img src="images/login-use-case-1.png" alt="" class="centered"/></div>
@@ -94,7 +94,7 @@
 
             <div class="seperator"></div>
             <h1>How to Achieve this Feature/Technical</h1>
-            <p class="subtext">To achieve all features available in Login needs API integration to interact between application with database. API responsible handling request by user who have entered their email address and password. Login API return response in JSON format and will be mapped in user interface. Here is an example of mapping data from service into user interface:</p>
+            <p class="subtext">To achieve all features available in Login, API integration is needed to interact between application with database. API is responsible for handling request by user who have entered their email address and password. Login API returns response in JSON formatted and current user's session id will be saved to session storage. Here is an example of mapping data from service into user interface:</p>
 
             <div> <img src="images/login-request.png" alt="" class="centered"/></div>
             <p class="image-caption">Login Request Mapping</p>
@@ -138,15 +138,8 @@
                 <div class="col-md-3"><h1 class="classes">Classes</h1></div>
                 <div class="col-md-9">
                     <div class="link-block">
-                        <a href="docs/Login.html" target="_blank" class="links">Login</a>
-                        <p class="linktext">A class that render the login box and</p>
-                    </div>
-                </div>
-                <div class="col-md-3"></div>
-                <div class="col-md-9">
-                    <div class="link-block">
-                        <a href="docs/LoginBox.html" target="_blank" class="links">LoginBox</a>
-                        <p class="linktext">A class with login box UI and functions that handle the validation and login api process.</p>
+                        <a href="docs/LoginBox.html" target="_blank" class="links">LoginView</a>
+                        <p class="linktext">A class with login box UI and functions that handle the validation and login API process.</p>
                     </div>
                 </div>
             </div>
