@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/ClaimDetailsForm.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/ClaimDetailsForm.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { Component } from 'react';
+import $ from 'jquery';
+
+/**
+ * Class representing Claim Details Form.
+ * @extends Component
+ */
+class ClaimDetailsForm extends Component {
+    /**
+    * Create ClaimDetailsForm
+    * @param {object} props object that will construct ClaimDetailsForm including the functions in it
+    */
+    constructor(props){
+        super(props);
+        this.mappingData=this.mappingData.bind(this);
+        this.handleSubmit=this.handleSubmit.bind(this);
+    }
+    
+    /**
+    * Function that will be automatically called when component is ready
+    * 
+    */
+    componentDidMount(){
+        var dataClaim = window.sessionStorage.getItem('dataClaim');
+        var dataProfile = window.sessionStorage.getItem('dataProfile');
+        var dataClaimObj = JSON.parse(dataClaim);
+        var dataProfileObj = JSON.parse(dataProfile);
+        this.mappingData(dataClaimObj,dataProfileObj);
+    }
+    
+    /**
+    * Mapping data from response
+    * @param {object} dataClaimObj contains data claim
+    * @param {object} dataProfileObj contains data profile
+    */
+    mappingData(dataClaimObj,dataProfileObj){
+        $(".patient-name-value").text(dataClaimObj.name);
+        $(".claim-number-value").text(dataClaimObj.claimId);
+        $(".service-date-value").text(dataClaimObj.fromDate + " - " + dataClaimObj.endDate);
+        $(".status-value").text(dataClaimObj.status);
+        $(".address-value").text(dataProfileObj.address);
+        $(".city-value").text(dataProfileObj.city + ", " + dataProfileObj.state);
+        $(".country-value").text(dataProfileObj.zipcode + ", " + dataProfileObj.country);
+        $(".patient-amount-billed-value").text(dataClaimObj.amountBilled);
+        $(".service-amount-paid-coverage-value").text(dataClaimObj.amountPaid);
+        $(".claim-amount-paid-coverage-to-value").text(dataClaimObj.hospital.name);
+        
+        
+        $(".claim-address-value").text(dataClaimObj.hospital.address);
+        $(".claim-city-value").text(dataClaimObj.hospital.city + ", " + dataClaimObj.hospital.state);
+        $(".claim-country-value").text(dataClaimObj.hospital.zipcode + ", " + dataClaimObj.hospital.country);
+    }
+    
+    /**
+    * Handle submit event
+    * @param {object} event contains native functions to be used on widget
+    */
+    handleSubmit(event){
+        event.preventDefault();
+        window.location.assign('/checkclaim');
+    }
+    
+    /**
+    * Render is a function to return html tags to be rendered
+    * @returns {html} Html tags to be rendered 
+    */ 
+    render() {
+        return (
+            &lt;div className="check-claim-detail">
+            &lt;div className="claim-detail-text">
+            &lt;p>Claim Details&lt;/p>
+            &lt;a id="back-prev-page" onClick={this.handleSubmit}>&amp;lt;&amp;lt; Back to Previous Page&lt;/a>
+            &lt;/div>
+            
+            &lt;div id="member-info-container">
+            &lt;div className="member-info-header">
+            Members Information
+            &lt;/div>
+            &lt;div className="member-info-body">
+            &lt;span className="left-claim-details">
+            &lt;div id="patientName">
+            &lt;label className="patient-name-label">Patient Name: &lt;/label>
+            &lt;div className="patient-name-value">&lt;/div>
+            &lt;/div>
+            &lt;div id="address">
+            &lt;label className="address-label">Address: &lt;/label>
+            &lt;div className="address-value">&lt;/div>&lt;br>&lt;/br>
+            &lt;div className="city-value">&lt;/div>&lt;br>&lt;/br>
+            &lt;div className="country-value">&lt;/div>
+            &lt;/div>
+            &lt;/span>
+            &lt;span className="right-claim-details">
+            &lt;div id="claimNumber">
+            &lt;label className="claim-number-label">Claim Number: &lt;/label>
+            &lt;div className="claim-number-value">&lt;/div>
+            &lt;/div>
+            &lt;div id="serviceDate">
+            &lt;label className="service-date-label">Service Date: &lt;/label>
+            &lt;div className="service-date-value">&lt;/div>
+            &lt;/div>
+            &lt;div id="status">
+            &lt;label className="status-label">Status: &lt;/label>
+            &lt;div className="status-value">&lt;/div>
+            &lt;/div>
+            &lt;/span>
+            &lt;/div>
+            &lt;/div>
+            &lt;div id="claim-details-container">
+            &lt;div className="claim-details-header">
+            Claim Details
+            &lt;/div>
+            &lt;div className="claim-details-body">
+            &lt;span className="left-claim-details">
+            &lt;div id="patientAmountBilled">
+            &lt;label className="patient-amount-billed-label">Amount Billed: &lt;/label>
+            &lt;div className="patient-amount-billed-value">&lt;/div>
+            &lt;/div>
+            &lt;div id="serviceAmountPaid">
+            &lt;label className="service-amount-paid-coverage-label">Amount Paid by Your Coverage: &lt;/label>
+            &lt;div className="service-amount-paid-coverage-value">&lt;/div>
+            &lt;/div>
+            &lt;/span>
+            &lt;span className="right-claim-details">
+            &lt;div id="claimAmountPaid">
+            &lt;label className="claim-amount-paid-coverage-to-label">Amount Paid To: &lt;/label>
+            &lt;div className="claim-amount-paid-coverage-to-value">&lt;/div>
+            &lt;/div>
+            
+            &lt;div id="claimAddress">
+            &lt;label className="claim-address-label">Address: &lt;/label>
+            &lt;div className="claim-address-value">&lt;/div>&lt;br>&lt;/br>
+            &lt;div className="claim-city-value">&lt;/div>&lt;br>&lt;/br>
+            &lt;div className="claim-country-value">&lt;/div>
+            &lt;/div>
+            
+            &lt;/span>
+            &lt;/div>
+            &lt;/div>
+
+            &lt;/div>
+
+        );
+    }
+}
+
+export default ClaimDetailsForm;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="CheckClaim.html">CheckClaim</a></li><li><a href="CheckClaimForm.html">CheckClaimForm</a></li><li><a href="ClaimDetails.html">ClaimDetails</a></li><li><a href="ClaimDetailsForm.html">ClaimDetailsForm</a></li><li><a href="Login.html">Login</a></li><li><a href="LoginBox.html">LoginBox</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a> on Wed Aug 23 2017 14:29:33 GMT+0700 (WIB)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
