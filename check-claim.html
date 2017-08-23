@@ -75,14 +75,14 @@
 
             <div class="seperator"></div>
             <h1>Overview</h1>
-            <p class="subtext">The application collect claim number and taxonomy that inputted by user, and validating it to the next process that is calling check claim api:</p>
+            <p class="subtext">By submitting claim number and taxonomy code, the application will validate and check the acceptance criteria. When the validation success, the application will call Check Claim API. If there is a valid data, the user will redirected to claim detail page that shows member information and claim details.</p>
 
-            <ol class="list">
+            <!-- <ol class="list">
                 <li>The validation process is to check acceptance criteria for claim number and taxonomy.</li>
                 <li>Calling check claim api to match the claim number and taxonomy to the server.</li>
-            </ol>
+            </ol> -->
             
-            <p class="subtext">Following are the sample use case of check claim:</p>
+            <p class="subtext">Following are the sample use case of Check Claim:</p>
             
             <div class="multiple-items">
                 <div> <img src="images/check-claim-use-case-1.png" alt="" class="centered"/></div>
@@ -98,7 +98,7 @@
             
             <div class="seperator"></div>
             <h1>How to Achieve this Feature/Technical</h1>
-            <p class="subtext">To achieve all features available in Check Claim needs API integration to interact between application with database. API responsible handling request by user who have entered their claim number and taxonomy. API return response in JSON format and will be mapped in user interface. Here is an example of mapping data from service into user interface:</p>
+            <p class="subtext">To achieve all features available in Check Claim, it needs API integration to interact between application with database. API is responsible for handling request by user who have entered their claim number and taxonomy. All APIs return response in JSON format and will be mapped in user interface. Here is an example of mapping data from service into user interface:</p>
 
             <div> <img src="images/check-claim-request-mapping.png" alt="" class="centered"/></div>
             <p class="image-caption">Check Claim Request Mapping</p>
