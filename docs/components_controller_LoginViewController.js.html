@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/LoginView.js</title>
+    <title>JSDoc: Source: components/controller/LoginViewController.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/LoginView.js</h1>
+    <h1 class="page-title">Source: components/controller/LoginViewController.js</h1>
 
     
 
@@ -26,26 +26,18 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React, { Component } from 'react';
-import * as Validator from '../util/Validator.js';
+            <pre class="prettyprint source linenums"><code>import * as Validator from '../../util/Validator.js';
+import * as API from '../../util/API.js';
 import $ from 'jquery';
-import * as API from '../util/API.js';
+
+import React, { Component } from 'react';
+
 
 /**
- * Class representing Login Box.
+ * Class representing Login View Controller.
  * @extends Component
  */
-
-class LoginView extends Component {
-    /**
-    * Create LoginBox
-    * @param {object} props object that will construct LoginBox including the functions in it
-    */
-    constructor(props){
-        super(props);
-        this.onSignInClicked=this.onSignInClicked.bind(this);
-    }
-    
+class LoginViewController extends Component {
     /**
     * Handle sign in event event
     * @param {object} event contains native functions to be used on widget
@@ -54,7 +46,7 @@ class LoginView extends Component {
         event.preventDefault();
         var emailElm = $("#email").val();
         var passwordElm = $("#password").val();
-        var isValid = this.handleValidation(emailElm,passwordElm);
+        var isValid = handleValidation(emailElm,passwordElm);
         if(isValid){
             $(".loading").css("display","block");
 
@@ -82,15 +74,15 @@ class LoginView extends Component {
             });
         }
     }
-    
+
     /**
     * Handle validation on login box before API function get called
     * @param {string} email email address to be validated with password
     * @param {string} password password to be validated with email
     */
     handleValidation(email,password){
-        var isValidEmail = this.validateEmail(email);
-        var isValidPassword = this.validatePassword(password);
+        var isValidEmail = validateEmail(email);
+        var isValidPassword = validatePassword(password);
         var allValid = isValidEmail.isValid &amp;&amp; isValidPassword.isValid ? true : false;
         if (!isValidEmail.isValid){
             $("input#email").addClass("input-error");
@@ -109,7 +101,7 @@ class LoginView extends Component {
         }
         return allValid;
     }
-    
+
     /**
     * Handle validation on email address
     * @param {string} email email address to be validated
@@ -127,7 +119,7 @@ class LoginView extends Component {
         }
         return {isValid:isValid,errorMsg:errorMsg};
     }
-    
+
     /**
     * Handle validation on email address
     * @param {string} password address to be validated
@@ -142,7 +134,7 @@ class LoginView extends Component {
         }
         return {isValid:isValid,errorMsg:errorMsg};
     }
-    
+
     /**
     * Handle watch password event
     * @param {object} event contains native functions to be used on widget
@@ -162,67 +154,144 @@ class LoginView extends Component {
             $(".password-watch").css("background-image","url(../../assets/images/show.png)");
         }
     }
-    
+
     /**
     * Handle state of remember me
     * @param {object} event contains native functions to be used on widget
     */
     onRememberMeChecked(event){
-        
+
     }
-    
+
     /**
     * Link to redirected to forgot password page
     * @param {object} event contains native functions to be used on widget
     */
     onForgotPasswordClicked(event){
-        
+
     }
-    
+
     /**
     * Link to redirected to forgot create account
     * @param {object} event contains native functions to be used on widget
     */
     onCreateAccountClicked(event){
-        
-    }
-    
-    /**
-    * Render is a function to return html tags to be rendered
-    * @returns {HTML} HTML tags to be rendered 
-    */
-    render() {
-        return (
-            &lt;div className="login">
-            &lt;div className="login-page">
-            &lt;div className="loginHeader">Welcome!&lt;/div>
-            &lt;div className="form">
-            &lt;form className="login-form" >
-            &lt;p>Sign in to your account.&lt;/p>
-            &lt;p className="loginbox-error">&lt;/p>
-            &lt;p>Email Address*&lt;/p>
-            &lt;input type="text" id="email"/>
-            &lt;p>Password*&lt;/p>
-            &lt;div className="password-container">
-            &lt;input type="password" id="password" maxLength="50"/>
-            &lt;span className="password-watch" onMouseUp={this.onWatchPasswordClicked} onMouseDown={this.onWatchPasswordClicked}>&lt;/span>
-            &lt;/div>
-            &lt;input id="remember-me" name="rememberme" type="checkbox">&lt;/input>
-            &lt;p>Remember me&lt;/p>
-            &lt;button type="button" onClick={this.onSignInClicked}>&lt;img src="assets/images/lock.png" alt="lock"/>SIGN IN&lt;/button>
-            &lt;div className="forgotSection">&lt;span>&lt;a id="forgotUsername">Forgot Password? &lt;/a>&lt;/span>
-            &lt;span>&lt;a id="signUp">Create Account&lt;/a>&lt;/span>
-            &lt;/div>
-            &lt;/form>
-            &lt;/div>
-            &lt;/div>
-            &lt;div className="loading">Loading&amp;#8230;&lt;/div>
-            &lt;/div>
-        );
+
     }
 }
 
-export default LoginView;</code></pre>
+export function onSignInClicked(event){
+    event.preventDefault();
+    var emailElm = $("#email").val();
+    var passwordElm = $("#password").val();
+    var isValid = handleValidation(emailElm,passwordElm);
+    if(isValid){
+        $(".loading").css("display","block");
+
+        var url = "http://manulife-service.cfapps.io/user/login";
+        var postBody = {
+            email:emailElm,
+            password:passwordElm
+        };
+        API.ajaxRequest(url,postBody,'POST',function(response){
+            //success
+            var responseString = JSON.stringify(response)
+            window.sessionStorage.setItem("dataProfile",responseString)
+            $("input#email").removeClass("input-error");
+            $("input#password").removeClass("input-error");
+            $(".password-watch").css("background-image","url(../../assets/images/show.png)");
+            $(".loginbox-error").text("");
+            window.location.assign('/checkclaim');
+        }, function(error){
+            //error
+            $("input#password").addClass("input-error");
+            $("input#email").addClass("input-error");
+            $(".loginbox-error").text(error.statusText);
+            $(".password-watch").css("background-image","url(../../assets/images/show_error.png)");
+            $(".loading").css("display","none");
+        });
+    }
+}
+
+
+export function handleValidation(email,password){
+    var isValidEmail = validateEmail(email);
+    var isValidPassword = validatePassword(password);
+    var allValid = isValidEmail.isValid &amp;&amp; isValidPassword.isValid ? true : false;
+    if (!isValidEmail.isValid){
+        $("input#email").addClass("input-error");
+        $(".loginbox-error").text(isValidEmail.errorMsg);
+    } else {
+        $("input#email").removeClass("input-error");
+        $(".loginbox-error").text("");
+    }
+    if (!isValidPassword.isValid){
+        $("input#password").addClass("input-error");
+        $(".loginbox-error").text(isValidPassword.errorMsg);
+        $(".password-watch").css("background-image","url(../../assets/images/show_error.png)");
+    } else {
+        $("input#password").removeClass("input-error");
+        $(".password-watch").css("background-image","url(../../assets/images/show.png)");
+    }
+    return allValid;
+}
+
+
+export function validateEmail(email){
+    var isValid=true;
+    var errorMsg = "";
+    if(email === ""){
+        isValid = false;
+        errorMsg = "Please enter your email address and your password.";
+    }else {
+        isValid = Validator.isEmailValid(email);
+        errorMsg = isValid ? "" : "Please re-enter your email address. Remember, the valid format is “email@domain.com”";
+    }
+    return {isValid:isValid,errorMsg:errorMsg};
+}
+
+
+export function validatePassword(password){
+    var isValid=true;
+    var errorMsg = "";
+    if(password === ""){
+        isValid = false;
+        errorMsg = "Please enter your email address and your password.";
+    }
+    return {isValid:isValid,errorMsg:errorMsg};
+}
+
+
+export function onWatchPasswordClicked(event){
+    event.preventDefault();
+    var currAttr = document.getElementById("password").getAttribute("type");
+    var passwordElm = document.getElementById("password");
+    if(currAttr==="password"){
+        passwordElm.setAttribute("type","text");
+    } else {
+        passwordElm.setAttribute("type","password");
+    }
+    if (passwordElm.getAttribute("type") === "text"){
+        $(".password-watch").css("background-image","url(../../assets/images/hide.png)");
+    } else {
+        $(".password-watch").css("background-image","url(../../assets/images/show.png)");
+    }
+}
+
+
+export function onRememberMeChecked(event){
+
+}
+
+
+export function onForgotPasswordClicked(event){
+
+}
+
+
+export function onCreateAccountClicked(event){
+
+}</code></pre>
         </article>
     </section>
 
@@ -232,13 +301,13 @@ export default LoginView;</code></pre>
 </div>
 
 <nav>
-    <h3>Classes</h3><ul><li><a href="CheckClaim.html">CheckClaim</a></li><li><a href="CheckClaimPage.html">CheckClaimPage</a></li><li><a href="ClaimDetails.html">ClaimDetails</a></li><li><a href="ClaimDetailsPage.html">ClaimDetailsPage</a></li><li><a href="Footer.html">Footer</a></li><li><a href="Header.html">Header</a></li><li><a href="Login.html">Login</a></li><li><a href="LoginView.html">LoginView</a></li></ul>
+    <h3>Classes</h3><ul><li><a href="CheckClaim.html">CheckClaim</a></li><li><a href="CheckClaimDetailsViewController.html">CheckClaimDetailsViewController</a></li><li><a href="CheckClaimPage.html">CheckClaimPage</a></li><li><a href="CheckClaimViewController.html">CheckClaimViewController</a></li><li><a href="ClaimDetails.html">ClaimDetails</a></li><li><a href="ClaimDetailsPage.html">ClaimDetailsPage</a></li><li><a href="FooterView.html">FooterView</a></li><li><a href="FooterViewController.html">FooterViewController</a></li><li><a href="HeaderView.html">HeaderView</a></li><li><a href="HeaderViewController.html">HeaderViewController</a></li><li><a href="Login.html">Login</a></li><li><a href="LoginView.html">LoginView</a></li><li><a href="LoginViewController.html">LoginViewController</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a> on Thu Aug 24 2017 11:56:08 GMT+0700 (WIB)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a> on Thu Aug 24 2017 18:43:48 GMT+0700 (WIB)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: CheckClaimPage.js</title>
+    <title>JSDoc: Source: components/view/common/HeaderView.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: CheckClaimPage.js</h1>
+    <h1 class="page-title">Source: components/view/common/HeaderView.js</h1>
 
     
 
@@ -27,34 +27,38 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React, { Component } from 'react';
-import CheckClaimView from './components/view/CheckClaimView.js';
-import HeaderView from './components/view/common/HeaderView.js';
-import FooterView from './components/view/common/FooterView.js';
+import $ from 'jquery';
 
 /**
- * Class representing Check Claim Page.
+ * Class representing Header.
  * @extends Component
  */
-class CheckClaimPage extends Component {
-/**
- * Render is a function to return html tags to be rendered
- * @returns {HTML} HTML tags to be rendered 
- */
-  render() {
-    return (
-        &lt;div>
-            &lt;HeaderView/>
-                &lt;div className="claim-container">
-                    &lt;CheckClaimView/>
-                &lt;/div>
-            &lt;FooterView/>
-        &lt;/div>
-    );
-  }
+class HeaderView extends Component {
+    
+    /**
+    * Function that will be automatically called when component is ready
+    * 
+    */
+    componentDidMount(){
+        if(window.location.href.indexOf("/checkclaim") &lt;= -1 &amp;&amp; window.location.href.indexOf("/claimdetails") &lt;= -1 ){
+            $(".header-container>img").attr("src","assets/images/Header - User not logged in.png")
+        }
+    }
+        
+    /**
+    * Render is a function to return HTML tags to be rendered
+    * @returns {HTML} HTML tags to be rendered 
+    */ 
+    render() {
+        return (
+            &lt;div className="header-container">
+                &lt;img src="assets/images/Header - User logged in.png" alt="manulife-background">&lt;/img>
+            &lt;/div>
+        );
+    }
 }
 
-export default CheckClaimPage;
-</code></pre>
+export default HeaderView;</code></pre>
         </article>
     </section>
 
