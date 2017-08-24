@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet">
 
-    <title>Manulife POC - Login</title>
+    <title>Manulife POC - Header</title>
 
     <!-- Bootstrap core CSS -->
     <link href="./css/bootstrap.min.css" rel="stylesheet">
@@ -60,8 +60,8 @@
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                             <li><a href="index.html">Overview</a></li>
-                            <li><a href="header.html">Header</a></li>
-                            <li class="active"><a href="login.html">Login</a></li>
+                            <li class="active"><a href="header.html">Header</a></li>
+                            <li><a href="login.html">Login</a></li>
                             <li><a href="check-claim.html">Check Claim</a></li>
                             <li><a href="claim-details.html">Claim Details</a></li>
                             <li><a href="footer.html">Footer</a></li>
@@ -73,63 +73,53 @@
 
         <div class="container">
             <h4>Component</h4>
-            <h1>Login</h1>
-            <p>Identify yourself by inputting email address and password to gain an access to the system.</p>
+            <h1>Header</h1>
+            <p>You'll see quick menu and navigating to other pages with ease from here.</p>
 
             <div class="seperator"></div>
             <h1>Overview</h1>
-            <p class="subtext">When the user clicks Sign In button in header, a login box will appear in the middle of the screen. After a user fills out the email address and password, then clicks on Submit button, the application validates it. If validation succeeds, Login API will be called.</p>
-
-            <!-- <ol class="list">
-                <li>The validation process is used to check acceptance criteria on email address and password.</li>
-                <li>Calling Login API to match the email address and password to the server.</li>
-            </ol> -->
-
-            <p class="subtext">Following are the sample use case of login:</p>
+            <p class="subtext">The Header contains two component, quick menu and navigation menu components. The quick menu contains personal, business selection for navigation. It also contains languange selection, contact us link, sign in / sign out button, you can also search the whole page from here. </p>
             
-            <div class="multiple-items">
-                <div> <img src="images/login-use-case-1.png" alt="" class="centered"/></div>
-                <div> <img src="images/login-use-case-2.png" alt="" class="centered"/></div>
-                <div> <img src="images/login-use-case-3.png" alt="" class="centered"/></div>
-                <div> <img src="images/login-use-case-4.png" alt="" class="centered"/></div>
-            </div>
+            <div> <img src="images/Header%20-%20User%20logged%20in.png" alt="" class="centered"/></div>
+            <p class="image-caption">Header</p>
             
-
             <div class="seperator"></div>
             <h1>How to Achieve this Feature/Technical</h1>
-            <p class="subtext">To achieve all features available in Login, API integration is needed to interact between application with database. API is responsible for handling request by user who have entered their email address and password. Login API returns response in JSON formatted and current user's session id will be saved to session storage. Here is an example of mapping data from service into user interface:</p>
+            <p class="subtext">To achieve all features available in Header, API integration is needed to interact between application with database. The API is responsible serve data to be used for menu lists on navigation. Header API returns response in JSON formatted. Here is an example of mapping data from service into user interface:</p>
 
-            <div> <img src="images/login-request.png" alt="" class="centered"/></div>
-            <p class="image-caption">Login Request Mapping</p>
+            <div> <img src="images/header-response-mapping.png" alt="" class="centered"/></div>
+            <p class="image-caption">Header Request Mapping</p>
 
             <h2>API Integration</h2>
-            <span class="title-selected"><p class="subtext">Following is service of 'Login' </p></span>
+            <span class="title-selected"><p class="subtext">Following is service of 'Header' </p></span>
 
             <div class="content-list" id="1">
-                <p class="subtext">API Name : Login API</p>
-                <p class="subtext">Request Header :
-                    <code>clientID: manulife;
-                        tokenID: MANULIFEWEBAPP
-                    </code></p>
+                <p class="subtext">API Name : Header API</p>
                 <p class="subtext">Service URL :
-                    <code>POST http://manulife-claim-dockermgmt.centralus.cloudapp.azure.com:6060/user/login</code></p>
-                <p class="subtext">Request Body</p>
+                    <code>GET http://manulife-claim-dockermgmt.centralus.cloudapp.azure.com:6060/navigation-menu</code></p>
+                
+                <p class="subtext">Response:</p>
                 <pre class="prettyprint">
         <code>
+     [
+      {
+        "section": "personal",
+        "menu": [
+          {
+            "name": "Live Events",
+            "subMenu": [
               {
-                "email":"alexa.sawyer@gmail.com",
-                "password":"ABC123abc"
-              }    
-        </code>
-      </pre>
-                <p class="subtext">Response</p>
-                <pre class="prettyprint">
-        <code>
-                {
-                  "status": "success",
-                  "sessionId": "xsiood34567$232"
-                }
-        </code>
+                "subMenuName": "Live events ...",
+                "link": "/for-personal/..."
+              },
+        ...
+            ]
+          },
+          ...
+        ]
+      }
+    ]
+                        </code>
       </pre>
             </div>
 
@@ -141,8 +131,8 @@
                 <div class="col-md-3"><h1 class="classes">Classes</h1></div>
                 <div class="col-md-9">
                     <div class="link-block">
-                        <a href="docs/LoginView.html" target="_blank" class="links">LoginView</a>
-                        <p class="linktext">A class with login box UI and functions that handle the validation and login API process.</p>
+                        <a href="docs/Header.html" target="_blank" class="links">Header</a>
+                        <p class="linktext">A class with header UI and functions that handle the API process.</p>
                     </div>
                 </div>
             </div>

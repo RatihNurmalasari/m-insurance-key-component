@@ -60,8 +60,11 @@
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                             <li><a href="index.html">Overview</a></li>
+                            <li><a href="header.html">Header</a></li>
                             <li><a href="login.html">Login</a></li>
                             <li class="active"><a href="check-claim.html">Check Claim</a></li>
+                            <li><a href="claim-details.html">Claim Details</a></li>
+                            <li><a href="footer.html">Footer</a></li>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
@@ -75,7 +78,7 @@
 
             <div class="seperator"></div>
             <h1>Overview</h1>
-            <p class="subtext">By submitting claim number and taxonomy code, the application will validate and check the acceptance criteria. When the validation success, the application will call Check Claim API. If there is a valid data, the user will redirected to claim detail page that shows member information and claim details.</p>
+            <p class="subtext">By submitting claim number and taxonomy code, the application will validate and check the acceptance criteria. When the validation success, the application will call Check Claim API. If there is a valid data, the user will redirected to claim details page that shows member information and claim details.</p>
 
             <!-- <ol class="list">
                 <li>The validation process is to check acceptance criteria for claim number and taxonomy.</li>
@@ -106,23 +109,12 @@
             <div> <img src="images/check-claim-response-mapping.png" alt="" class="centered"/></div>
             <p class="image-caption">Check Claim Response Mapping</p>
 
-            <div class="multiple-items">
-                <div> <img src="images/claim-detail-response-mapping-1.png" alt="" class="centered"/></div>
-                <div> <img src="images/claim-detail-response-mapping-2.png" alt="" class="centered"/></div>
-                <div> <img src="images/claim-detail-response-mapping-3.png" alt="" class="centered"/></div>
-            </div>
-            <p class="image-caption">Claim Details Response Mapping</p>
+            
 
 
             <h2>API Integration</h2>
-            <span class="title-selected"><p class="subtext">Following is service of 'Check Claim' based on API : </p></span>
-            <span class="content-select">
-                <select>
-                    <option value=1>Taxonomy API</option>
-                    <option value=2>Profile API</option>
-                    <option value=3>Claim API</option>
-                </select>
-            </span>
+            <span class="title-selected"><p class="subtext">Following is service of 'Check Claim': </p></span>
+            
             
             
             <div class="content-list" id="1">
@@ -152,71 +144,6 @@
       </pre>
             </div>
 
-
-            <div class="content-list hide" id="2">
-                <p class="subtext">API Name : Profile API</p>
-                <p class="subtext">Request Header :
-                    <code>clientID: manulife;
-                        tokenID: MANULIFEWEBAPP; sessionId: xsiood34567$232
-                    </code></p>
-                <p class="subtext">Service URL :
-                    <code>GET http://manulife-claim-dockermgmt.centralus.cloudapp.azure.com:6060/user/profile</code></p>
-
-                <p class="subtext">Response</p>
-                <pre class="prettyprint">
-        <code>
-                {
-                  "email": "alexa.sawyer@gmail.com",
-                  "firstName": "Alexa",
-                  "lastName": "Sawyer",
-                  "dob": "08/01/1974",
-                  "address": "302-2951 Ipsum. Road",
-                  "city": "Lowell",
-                  "state": "Massachusetts",
-                  "country": "US",
-                  "zipcode": "49235",
-                  "phoneNumber": "(128) 858-2131"
-                }
-
-        </code>
-      </pre>
-            </div>
-
-            <div class="content-list hide" id="3">
-                <p class="subtext">API Name : Claim API</p>
-                <p class="subtext">Request Header :
-                    <code>clientID: manulife;
-                        tokenID: MANULIFEWEBAPP; sessionId: xsiood34567$232
-                    </code></p>
-                <p class="subtext">Service URL :
-                    <code>GET https://manulife-claim-dockermgmt.centralus.cloudapp.azure.com:6060/manulife/claim/{claim-id}/{taxonomy}</code></p>
-
-                <p class="subtext">Response</p>
-                <pre class="prettyprint">
-        <code>
-                {
-                  "taxonomy": "8282474042",
-                  "email": "alexa.sawyer@gmail.com",
-                  "name": "Alexa Sawyer",
-                  "status": "Processed",
-                  "fromDate": "02/24/2017",
-                  "endDate": "02/24/2017",
-                  "amountBilled": "$210",
-                  "amountPaid": "$210",
-                  "hospital": {
-                    "address": "659 Boulevard St",
-                    "city": "Dover",
-                    "state": "Ohio",
-                    "zipCode": "44622",
-                    "country": "United States",
-                    "name": "Union Hospital"
-                  },
-                  "claimId": "16080215833"
-                }
-
-        </code>
-      </pre>
-            </div>
             <div class="seperator"></div>
 
             <div class="row">
@@ -230,22 +157,8 @@
                 <div class="col-md-3"></div>
                 <div class="col-md-9">
                     <div class="link-block">
-                        <a href="docs/ClaimDetailsPage.html" target="_blank" class="links">ClaimDetailsPage</a>
-                        <p class="linktext">A class that render the claim details component</p>
-                    </div>
-                </div>
-                <div class="col-md-3"></div>
-                <div class="col-md-9">
-                    <div class="link-block">
                         <a href="docs/CheckClaim.html" target="_blank" class="links">CheckClaim</a>
                         <p class="linktext">A class with check claim UI and functions that handle the validation and check claim api process.</p>
-                    </div>
-                </div>
-                <div class="col-md-3"></div>
-                <div class="col-md-9">
-                    <div class="link-block">
-                        <a href="docs/ClaimDetails.html" target="_blank" class="links">ClaimDetails</a>
-                        <p class="linktext">A class with claim details UI where the response data from claim api rendered</p>
                     </div>
                 </div>
             </div>
