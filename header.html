@@ -78,23 +78,23 @@
 
             <div class="seperator"></div>
             <h1>Overview</h1>
-            <p class="subtext">The Header contains two component, quick menu and navigation menu components. The quick menu contains personal, business selection for navigation. It also contains languange selection, contact us link, sign in / sign out button, you can also search the whole page from here. </p>
+            <p class="subtext">The Header contains two components, quick menu and navigation menu components. The quick menu is in control to show personal or business purpose in navigation menu. Quick menu also shows language selection, contact us link, sign in/sign out button, and search menu.</p>
             
             <div> <img src="images/Header%20-%20User%20logged%20in.png" alt="" class="centered"/></div>
             <p class="image-caption">Header</p>
             
             <div class="seperator"></div>
             <h1>How to Achieve this Feature/Technical</h1>
-            <p class="subtext">To achieve all features available in Header, API integration is needed to interact between application with database. The API is responsible serve data to be used for menu lists on navigation. Header API returns response in JSON formatted. Here is an example of mapping data from service into user interface:</p>
+            <p class="subtext">To achieve all features available in Header, API integration is needed to interact between application with database. The API is responsible to serve data to be used for menu lists on navigation. Header API returns response in JSON format. Here is an example of mapping data from service into user interface:</p>
 
             <div> <img src="images/header-response-mapping.png" alt="" class="centered"/></div>
             <p class="image-caption">Header Request Mapping</p>
 
             <h2>API Integration</h2>
-            <span class="title-selected"><p class="subtext">Following is service of 'Header' </p></span>
+            <span class="title-selected"><p class="subtext">Following is service of 'Navigation Menu' </p></span>
 
             <div class="content-list" id="1">
-                <p class="subtext">API Name : Header API</p>
+                <p class="subtext">API Name : Navigation Menu API</p>
                 <p class="subtext">Service URL :
                     <code>GET http://manulife-claim-dockermgmt.centralus.cloudapp.azure.com:6060/navigation-menu</code></p>
                 
@@ -112,7 +112,7 @@
                 "subMenuName": "Live events ...",
                 "link": "/for-personal/..."
               },
-        ...
+              ...
             ]
           },
           ...
@@ -131,8 +131,12 @@
                 <div class="col-md-3"><h1 class="classes">Classes</h1></div>
                 <div class="col-md-9">
                     <div class="link-block">
-                        <a href="docs/Header.html" target="_blank" class="links">Header</a>
-                        <p class="linktext">A class with header UI and functions that handle the API process.</p>
+                        <a href="docs/Header.html" target="_blank" class="links">HeaderView</a>
+                        <p class="linktext">A class that contains header user interface and user interaction handler.</p>
+                    </div>
+                    <div class="link-block">
+                        <a href="#" target="_blank" class="links">HeaderViewController</a>
+                        <p class="linktext">A class that contains functions to handle the data and API process.</p>
                     </div>
                 </div>
             </div>

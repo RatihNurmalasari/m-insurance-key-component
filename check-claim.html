@@ -78,7 +78,7 @@
 
             <div class="seperator"></div>
             <h1>Overview</h1>
-            <p class="subtext">By submitting claim number and taxonomy code, the application will validate and check the acceptance criteria. When the validation success, the application will call Check Claim API. If there is a valid data, the user will redirected to claim details page that shows member information and claim details.</p>
+            <p class="subtext">The user can fill check claim status form in here by submitting the claim number and choose the taxonomy code that populated from Taxonomy API. If the data that user submitted pass the acceptance criteria, application call Check Claim API and navigate to Claim Details page.</p>
 
             <!-- <ol class="list">
                 <li>The validation process is to check acceptance criteria for claim number and taxonomy.</li>
@@ -113,9 +113,7 @@
 
 
             <h2>API Integration</h2>
-            <span class="title-selected"><p class="subtext">Following is service of 'Check Claim': </p></span>
-            
-            
+            <span class="title-selected"><p class="subtext">Following is service that used in 'Check Claim': </p></span>
             
             <div class="content-list" id="1">
                 <p class="subtext">API Name : Taxonomy API</p>
@@ -128,20 +126,20 @@
 
                 <p class="subtext">Response</p>
                 <pre class="prettyprint">
-        <code>
-                [
-                  {
-                    "label": "HIPPA CODE - 82824740421",
-                    "code": "82824740421"
-                  },
-                  {
-                    "label": "HIPPA CODE - 8282727332",
-                    "code": "8282727332"
-                  }
-                ]
+                    <code>
+                            [
+                              {
+                                "label": "HIPPA CODE - 82824740421",
+                                "code": "82824740421"
+                              },
+                              {
+                                "label": "HIPPA CODE - 8282727332",
+                                "code": "8282727332"
+                              }
+                            ]
 
-        </code>
-      </pre>
+                    </code>
+                </pre>
             </div>
 
             <div class="seperator"></div>
@@ -151,14 +149,15 @@
                 <div class="col-md-9">
                     <div class="link-block">
                         <a href="docs/CheckClaimPage.html" target="_blank" class="links">CheckClaimPage</a>
-                        <p class="linktext">A class that render the check claim component</p>
+                        <p class="linktext">A class that render the header, check claim component and footer.</p>
                     </div>
-                </div>
-                <div class="col-md-3"></div>
-                <div class="col-md-9">
                     <div class="link-block">
                         <a href="docs/CheckClaim.html" target="_blank" class="links">CheckClaim</a>
-                        <p class="linktext">A class with check claim UI and functions that handle the validation and check claim api process.</p>
+                        <p class="linktext">A class that contains check claim view and user interaction handler.</p>
+                    </div>
+                    <div class="link-block">
+                        <a href="#" target="_blank" class="links">CheckClaimController</a>
+                        <p class="linktext">A class that contains functions to handle the data validation and Check Claim API processes.</p>
                     </div>
                 </div>
             </div>

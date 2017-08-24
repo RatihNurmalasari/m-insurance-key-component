@@ -78,7 +78,7 @@
 
             <div class="seperator"></div>
             <h1>Overview</h1>
-            <p class="subtext">When the user clicks Sign In button in header, a login box will appear in the middle of the screen. After a user fills out the email address and password, then clicks on Submit button, the application validates it. If validation succeeds, Login API will be called.</p>
+            <p class="subtext">When the user clicks on Sign In button in header, a login box will appear in the middle of the screen. After the user fills out the email address and password, then clicks on Submit button, the application will do client side validation. If the validation succeeds, Login API will be called.</p>
 
             <!-- <ol class="list">
                 <li>The validation process is used to check acceptance criteria on email address and password.</li>
@@ -97,7 +97,7 @@
 
             <div class="seperator"></div>
             <h1>How to Achieve this Feature/Technical</h1>
-            <p class="subtext">To achieve all features available in Login, API integration is needed to interact between application with database. API is responsible for handling request by user who have entered their email address and password. Login API returns response in JSON formatted and current user's session id will be saved to session storage. Here is an example of mapping data from service into user interface:</p>
+            <p class="subtext">To achieve all features available in Login, API integration is needed to interact between application with database. API is responsible for handling request by user who have entered their email address and password. Login API returns response in JSON format and current user's session id will be saved to the session storage for the next API request purpose. Here is an example of mapping data from service into user interface:</p>
 
             <div> <img src="images/login-request.png" alt="" class="centered"/></div>
             <p class="image-caption">Login Request Mapping</p>
@@ -142,7 +142,11 @@
                 <div class="col-md-9">
                     <div class="link-block">
                         <a href="docs/LoginView.html" target="_blank" class="links">LoginView</a>
-                        <p class="linktext">A class with login box UI and functions that handle the validation and login API process.</p>
+                        <p class="linktext">A class that contains login view and user interaction handler.</p>
+                    </div>
+                    <div class="link-block">
+                        <a href="#" target="_blank" class="links">LoginViewController</a>
+                        <p class="linktext">A class that contains functions to handle the data validation and Login API process.</p>
                     </div>
                 </div>
             </div>
